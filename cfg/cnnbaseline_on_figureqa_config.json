@@ -1,0 +1,96 @@
+{
+    "max_num_steps": 1500000,
+    "val_interval": 1,
+    "save_interval": 1000,
+    "visualization_interval": 100,
+    "num_val_batches": 40,
+    "batch_size": 160,
+    "val_batch_size": 64,
+    "im_size": [256, 256],
+    "num_threads": 8,
+    "target_type": "onehot",
+    "learning_rate": 2.5e-4,
+    "image_pad_size": [264, 264],
+    "model": {
+        "mlp": {
+            "params": [
+                {
+                    "num_outputs": 512
+                }, 
+                {
+                    "num_outputs": 512, 
+                    "use_dropout": true
+                }, 
+                {
+                    "activation_fn": null, 
+                    "num_outputs": 2
+                }
+            ], 
+            "type": "mlp"
+        }, 
+        "image_encoder": {
+            "params": [
+                {
+                    "k_h": 3, 
+                    "k_w": 3, 
+                    "num_channels": 64, 
+                    "s_h": 2, 
+                    "s_w": 2, 
+                    "use_batch_norm": true
+                }, 
+                {
+                    "k_h": 3, 
+                    "k_w": 3, 
+                    "num_channels": 64, 
+                    "s_h": 2, 
+                    "s_w": 2, 
+                    "use_batch_norm": true
+                }, 
+                {
+                    "k_h": 3, 
+                    "k_w": 3, 
+                    "num_channels": 64, 
+                    "s_h": 2, 
+                    "s_w": 2, 
+                    "use_batch_norm": true
+                }, 
+                {
+                    "k_h": 3, 
+                    "k_w": 3, 
+                    "num_channels": 64, 
+                    "s_h": 2, 
+                    "s_w": 2, 
+                    "use_batch_norm": true
+                },
+                {
+                    "k_h": 3, 
+                    "k_w": 3, 
+                    "num_channels": 64, 
+                    "s_h": 2, 
+                    "s_w": 2, 
+                    "use_batch_norm": true
+                }
+            ], 
+            "fc_params": [
+                {
+                    "num_outputs": 512
+                }
+            ],
+            "type": "conv-fc"
+        }, 
+        "name": "CNNBaseline", 
+        "output": {
+            "type": "categorical"
+        }, 
+        "question_encoder": {
+            "embedding_size": 32, 
+            "params": {
+                "num_units": 256
+            }, 
+            "type": "lstm"
+        }
+    },
+    "dataset": {
+        "name": "FigureQA"
+    }
+}

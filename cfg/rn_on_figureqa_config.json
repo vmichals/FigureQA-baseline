@@ -1,0 +1,112 @@
+{
+    "max_num_steps": 1500000,
+    "val_interval": 1,
+    "save_interval": 1000,
+    "visualization_interval": 100,
+    "batch_size": 160,
+    "val_batch_size": 64,
+    "im_size": [256, 256],
+    "num_threads": 24,
+    "target_type": "onehot",
+    "learning_rate": 2.5e-4,
+    "image_pad_size": [264, 264],
+    "model": {
+        "block_selection": {
+            "coord_enc": "block_index_ij", 
+            "type": "dense"
+        }, 
+        "f_phi": {
+            "aggregation_type": "avg", 
+            "params": [
+                {
+                    "num_outputs": 256
+                }, 
+                {
+                    "num_outputs": 256, 
+                    "use_dropout": true
+                }, 
+                {
+                    "activation_fn": null, 
+                    "num_outputs": 2
+                }
+            ], 
+            "type": "mlp"
+        }, 
+        "g_theta": {
+            "params": [
+                {
+                    "num_outputs": 256
+                }, 
+                {
+                    "num_outputs": 256
+                }, 
+                {
+                    "num_outputs": 256
+                }, 
+                {
+                    "num_outputs": 256
+                }
+            ], 
+            "type": "mlp"
+        }, 
+        "image_encoder": {
+            "params": [
+                {
+                    "k_h": 3, 
+                    "k_w": 3, 
+                    "num_channels": 64, 
+                    "s_h": 2, 
+                    "s_w": 2, 
+                    "use_batch_norm": true
+                }, 
+                {
+                    "k_h": 3, 
+                    "k_w": 3, 
+                    "num_channels": 64, 
+                    "s_h": 2, 
+                    "s_w": 2, 
+                    "use_batch_norm": true
+                }, 
+                {
+                    "k_h": 3, 
+                    "k_w": 3, 
+                    "num_channels": 64, 
+                    "s_h": 2, 
+                    "s_w": 2, 
+                    "use_batch_norm": true
+                }, 
+                {
+                    "k_h": 3, 
+                    "k_w": 3, 
+                    "num_channels": 64, 
+                    "s_h": 2, 
+                    "s_w": 2, 
+                    "use_batch_norm": true
+                }, 
+                {
+                    "k_h": 3, 
+                    "k_w": 3, 
+                    "num_channels": 64, 
+                    "s_h": 2, 
+                    "s_w": 2, 
+                    "use_batch_norm": true
+                }
+            ], 
+            "type": "conv-only"
+        }, 
+        "name": "RN", 
+        "output": {
+            "type": "categorical"
+        }, 
+        "question_encoder": {
+            "embedding_size": 64, 
+            "params": {
+                "num_units": 256
+            }, 
+            "type": "lstm"
+        }
+    },
+    "dataset": {
+        "name": "FigureQA"
+    }
+}
